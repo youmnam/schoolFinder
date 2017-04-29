@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  renter_name: MyString
+  renter_email: MyString
+  renter_password: MyString
+
+two:
+  renter_name: MyString
+  renter_email: MyString
+  renter_password: MyString

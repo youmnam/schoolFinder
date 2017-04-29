@@ -1,0 +1,36 @@
+<%= form_for(@renter) do |f| %>
+  <% if @renter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@renter.errors.count, "error") %> prohibited this renter from being saved:</h2>
+
+      <ul>
+      <% @renter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :renter_name %><br>
+    <%= f.text_field :renter_name %>
+  </div>
+  <div class="field">
+    <%= f.label :renter_email %><br>
+    <%= f.text_field :renter_email %>
+  </div>
+  
+  <div class="field">
+  <%= f.label :"Password"  %>
+  <%= f.password_field :password, class: 'form-control' %><br> 
+  </div>
+  
+  <div class="field">
+  <%= f.label :"Password confirmation"  %> <br> 
+  <%= f.password_field :password_confirmation , class: 'form-control' %> <br> 
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

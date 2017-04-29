@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ur_owner_id: 
+  ur_user_id: 
+  ur_trustrate: 9.99
+  ur_onTimeRate: 9.99
+  ur_comment: MyText
+
+two:
+  ur_owner_id: 
+  ur_user_id: 
+  ur_trustrate: 9.99
+  ur_onTimeRate: 9.99
+  ur_comment: MyText

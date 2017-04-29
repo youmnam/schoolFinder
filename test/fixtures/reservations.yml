@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_id: 
+  renter_id: 
+  from: 2017-04-22
+  to: 2017-04-22
+  name: MyString
+  email: MyString
+
+two:
+  item_id: 
+  renter_id: 
+  from: 2017-04-22
+  to: 2017-04-22
+  name: MyString
+  email: MyString

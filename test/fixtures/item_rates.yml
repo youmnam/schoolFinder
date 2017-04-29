@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ir_item_id: 
+  ir_user_id: 
+  ir_rate: 9.99
+  ir_comment: MyText
+
+two:
+  ir_item_id: 
+  ir_user_id: 
+  ir_rate: 9.99
+  ir_comment: MyText

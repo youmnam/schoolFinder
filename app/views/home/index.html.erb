@@ -1,0 +1,114 @@
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>iRentex</title>
+
+</head>
+<body>
+   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                  <%= link_to "iRentex", root_path, class: "navbar-brand"%>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!-- <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>-->
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+          <h2 class="head1" >Want to Rent? </h2><p class="p1">Discover what you can rent via irentex.</p>        
+ 		<% if current_user %>
+            <p class="p2">Welcome Vendor: <%= current_user.usr_vname %> <%= link_to "Dashboard", user_path(current_user) %> 
+                </p>
+        <%else%>
+            <% if current_renter %>
+                <p class="p2">Welcome User: <%= current_renter.renter_name  %> <%= link_to "Dashboard", renter_path(current_renter) %> </p>
+            <%else%>
+                <p class="p2">Are you vendor? <%= link_to "Sign up now!", new_user_path %> has account? <%= link_to "Sign in", login_path %></p>
+                <p class="p2">Are you normal user? <%= link_to "Sign up now!", new_renter_path %> has account? <%= link_to "Sign in", loginrenter_path %></p>
+            <%end%>
+        <%end%>
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                 <%= form_tag(home_index_path, :method => "get", id: "search-form") do %>
+				 <%= text_field_tag :search, params[:search], placeholder: "Search items" %>
+			     <%= submit_tag "Search" %>
+                <h3>Categories</h3>
+                 
+			<% end %>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+			<% count =0 
+               @categories.each do |i| %>
+			
+	            <div class="col-md-3 col-sm-6 hero-feature">
+	                <div class="thumbnail">
+	                    
+	                    <div class="caption">
+	                        <h3>
+							<%= link_to  i.CategoryName , showcat_path(:iid => i.id), class: "btn btn-default" %>
+							</h3>
+	                        
+	                        
+	                    </div>
+	                </div>
+	            </div>
+	           <% count = count+ 1
+                  end %>
+            
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; irentex 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+</body>

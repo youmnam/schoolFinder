@@ -1,0 +1,89 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<%= form_for :user , url: users_path do |u| %>
+
+	<%=	u.label :"Vendor Name" %>
+	<%=	u.text_field :usr_vname,  class: 'form-control' %> <br> 
+
+
+	<%=	u.label :"Category:"  %>  
+	<%= 	u.select(:categories_id) do %>
+	<% 			@categories.each do |c| -%>
+	<%= 		content_tag(:option, c.CategoryName , value: c.id) %>	
+			<% end %>
+    <% end %>
+
+    <br> 
+
+    <%=	u.label :"short description:" %>
+	<%=	u.text_area :usr_description,  class: 'form-control' %> <br> 
+
+	<%=	u.label :"email"  %>  
+	<%= u.text_field :usr_email, class: 'form-control' %><br> 
+
+	<%=	u.label :"Password"  %>
+	<%= u.password_field :password, class: 'form-control' %><br> 
+
+	<%=	u.label :"Password confirmation"  %> <br> 
+	<%=	u.password_field :password_confirmation , class: 'form-control' %> <br> 
+
+	<%=	u.label :"telephone no."  %> 
+	<%= u.text_field :usr_tel, class: 'form-control' %><br> 
+
+	<%=	u.label :"Address:"  %> <br> 
+	<%= u.text_field :usr_address, class: 'form-control' %> <br> 
+	
+	<%=	u.label :"Governorates:"  %>  
+	<%= u.select(:usr_gover) do %>
+							 <%[['Alexandria','Alexandria'], 
+		    					['Aswan', 'Aswan'], 
+		    					['Asyut', 'Asyut'], 
+								['Beheira', 'Beheira'],
+								['Beni Suef', 'Beni Suef'], 
+								['Cairo', 'Cairo'], 
+								['Dakahlia', 'Dakahlia'], 
+								['Damietta', 'Damietta'], 
+								['Faiyum', 'Faiyum'], 
+								['Gharbia', 'Gharbia'],  
+								['Giza', 'Giza'], 
+								['Ismailia', 'Ismailia'], 
+								['Kafr El Sheikh', 'Kafr El Sheikh'], 
+								['Luxor', 'Luxor'], 
+								['Matruh', 'Matruh'], 
+								['Minya', 'Minya'], 
+								['Monufia', 'Monufia'], 
+								['North Sinai', 'North Sinai'],
+								['New Valley', 'New Valley'],
+								['Port Said', 'Port Said'],
+								['Qalyubia', 'Qalyubia'],
+								['Red Sea', 'Red Sea'],
+								['Sharqia', 'Sharqia'],
+								['Sohag', 'Sohag'],
+								['South Sinai', 'South Sinai'],
+								['Suez', 'Suez'] ].each do |c| -%>
+	<%= content_tag(:option, c.first, value: c.last) %>	
+
+  <% end %>
+<% end %>
+	
+<%=	u.label :"delivery option:"  %>  
+	<%= u.select(:usr_delivery) do %>
+							 <%[['home','0'], 
+		    					['at shop', '1'], 
+		    					['both ', '2'] ].each do |c| -%>
+	<%= content_tag(:option, c.first, value: c.last) %>	
+
+  <% end %>
+<% end %>
+
+
+    <br>  
+<p>
+  <%=u.submit "Sign up", class: "btn btn-primary"  %>
+</p>
+<% end %>
+
+
+  </div>
+</div>

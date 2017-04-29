@@ -1,0 +1,76 @@
+<title> Add New Item</title>
+
+<%= link_to 'Back', user_path(:id => params[:user_id]) %>
+
+<h1>Add New Item</h1>
+
+<%= form_for :item, url: user_items_path  do |u| %>
+<table>
+  <tr>
+    <th><%= u.hidden_field :category_id, :value => @user.categories_id %></th>
+    <th><%= u.hidden_field :item_available, :value => :"1" %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td> <%=	u.label :"Item Name:"         %></td>
+    <td> <%=	u.text_field :item_name  %></td>
+  </tr>
+  <tr>
+    <td> <%=	u.label :"Item Description:"  %> </td>
+    <td> <%=	u.text_area :item_desc  %> </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><%=	u.label :"Item Price:"        %></td>
+    <td><%=	u.text_field :item_price %></td>
+    <td><%=	u.label :"Price per"          %> <%=   u.select(:item_per) do %>
+							                        <%[['day','day'], 
+							                           ['week', 'week'],
+							                           ['month', 'month']].each do |c| -%>
+	                                                    <%= content_tag(:option, c.first, value: c.last) %>	
+	                                                    <% end %>
+	                                                    <% end %></td>
+  </tr>
+  <tr>
+    <td><%=	u.label :"Rental Period:"     %> </td>
+    <td><%=	u.text_field :item_maxp, :value =>"max" %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%=	u.text_field :item_minp, :value =>"min" %></td>
+    <td></td>
+  </tr>
+  
+  <tr>
+    <td><strong> Product Spesfications: </strong></td>
+    <td></td>
+    <td></td>
+  </tr>
+	<% count =0 
+	   @filters.each do |i| %>
+			 		<tr>
+			 			<td><%=i.nameOfLabel%></td>
+			 			<td><input type="text" name ="<%=i.nameOfLabel%>"> </td>
+			 			<td></td>
+			 		</tr>    
+	            
+	         <% count = count+ 1
+	    end %>
+  <tr>
+  <%= u.fields_for :item_attachments do |p| %>
+      <td> <%= p.label :image %> </td>
+      <td><%= p.file_field :image, :multiple => true, name: "item_attachments[image][]" %></td>
+      <td></td>
+   <% end %>
+ </tr>
+
+  <tr>
+    <td><%=u.submit %></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<% end %>
+
+

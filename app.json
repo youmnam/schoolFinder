@@ -1,0 +1,8 @@
+{
+  "name": "irentex",
+  "description": "irentex api test",
+  "image": "heroku/ruby",
+  "repository": "https://github.com/youmnam/irentex.git",
+  "keywords": ["ruby", "rails" ],
+  "addons": [ "heroku-postgresql" ]
+}

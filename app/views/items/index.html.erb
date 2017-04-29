@@ -1,0 +1,66 @@
+<h3><%= @item.item_name %></h3>
+      
+<p id="notice"></p>
+<table style="width: 50%">
+  <tr>
+    <th>item images</th>
+    <th colspan="3"></th>
+  </tr>
+
+  <tr>
+    <% @item.item_attachments.all.each do |p| %>
+       <td>  <%= image_tag p.image.thumb2.url%> </td>
+      <% end %>
+  </tr>
+
+</table>
+
+<table style="width: 50%">
+  <tr>
+    <th>Item Description</th>
+    <th>Item Price</th>
+    <% @labels.each do |label| %>
+      <th><%= label%></th>
+    <%end%>
+    <th colspan="3"></th>
+  </tr>
+  <tr>
+      <td><%= @item.item_desc %></td>
+      <td><%= @item.item_price %></td>
+      <% @itemSpecs.each do |itemspec| %>
+        <td><%= itemspec.value %></td>
+     <%end%>
+
+    </tr>
+</table>
+
+<h3> Vendor Info: </h3>
+<p id="notice"><%= notice %></p>
+  <strong>Vendor Name:</strong> <%= @user.usr_vname %> <br>
+  <strong>logo:</strong> <%= image_tag @user.usr_logo.thumb %> <br>
+  <b>Description:              </b> <%= @user.usr_description  %> <br>
+  <b>Delivery option:                 </b> <% if @user.usr_delivery == 0 %> 
+                                         <%= :"home" %>
+                                     <% else 
+                                           if  @user.usr_delivery == 1 %>
+                                                <%= :"shop" %>
+                                            <% else %>
+                                                <%= :"home & shop" %>
+                                            <% end %>
+                                       <% end %> <br>
+
+  <b>Your Address is:          </b> <%= @user.usr_address  %> , <%=h @user.usr_gover  %> <br>
+  <b>Telephone no.: </b> <%= @user.usr_tel  %>   <br> 
+<br>
+
+<h3> Request Form </h3>
+<%= form_for :reservation , url: reservations_path(:id => @item.id) do |u| %>
+    <%= u.hidden_field :item_id, :value => @item.id %>
+    <%= u.hidden_field :status, :value => "0" %>
+    Name:  <%= text_field(:reservation, :name)  %> <br>
+    Email: <%= text_field(:reservation, :email) %> <br>
+    Form:  <%= text_field(:reservation, :from , id: "from" )  %> <br>
+    To  :  <%= text_field(:reservation, :to, id: "to")    %> <br>
+    <br>
+<%=u.submit "Reserve Now!", class: "btn btn-primary"  %>
+<%end%>

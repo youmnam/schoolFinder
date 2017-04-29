@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+<p><%= link_to '+add item', new_user_item_path(@user.id) %></p>
+<p>
+	<b>Welcome </b> <%=	@user.usr_vname  %> !
+</p>
+<br>
+<br>
+<p id="notice"><%= notice %></p>
+ <strong>logo:</strong> <%= image_tag @user.usr_logo.thumb %>
+<br>
+<%= form_for @user, url: uploadlogo_path(:id => @user.id)   do |f| %>
+    <p><%= f.file_field :usr_logo  %> <br>
+       <%=f.submit "upload logo", class: "btn btn-primary"  %></p>
+<% end %>
+<br>
+<br>
+<p>
+	<b>logged-in via:            </b> <%=	@user.usr_email  %> <br>
+	<b>Registered telephone no.: </b> <%=	@user.usr_tel  %>   <br> 
+  <b>Description:              </b> <%=	@user.usr_description  %> <br>
+  <b>Delivery:                 </b> <% if @user.usr_delivery == 0 %> 
+                                         <%= :"home" %>
+                                     <% else 
+                                           if  @user.usr_delivery == 1 %>
+                                                <%= :"shop" %>
+                                            <% else %>
+                                                <%= :"home & shop" %>
+                                            <% end %>
+                                       <% end %> <br>
+	<b>Your Address is:          </b> <%= @user.usr_address  %> , <%=h @user.usr_gover  %> <br>
+	<b>Your Category is:         </b> <%= @user_category.CategoryName%>
+</p>
+<h3>Reservations:</h3>
+<table border="1">
+  <tr>
+    <th>Product no: </th>
+    <th>Requester Name :</th>
+    <th>Requester Email:</th>
+    <th>Request Date <br>From --> date </th>
+    <th>:</th>
+  </tr>
+  <% @reservations.each do |rr| %>
+    <% rr.each do |r| %>
+            <tr>
+              <td> <%= r.item_id %></td>
+              <td> <%= r.name %></td>
+              <td> <%= r.email %></td>
+              <td> <%= r.from %> --> <%= r.to %> </td>
+              <td> <% if r.status == 0 %>
+              <%=  :"new request" %>
+                <td> <%= link_to "accept", changeStatus_path(:id => r.id ,:user_id => @user.id, :status =>'1') %></td>
+                 <td> <%= link_to "reject", changeStatus_path(:id => r.id ,:user_id => @user.id, :status =>'2') %></td>
+                   <% else 
+                      if r.status == 1 %>
+                        <%=  :"accepted" %>
+                    <%else %>
+                        <%=  :"rejected" %>
+                   <%end%>
+                   <%end%>
+              </td> 
+            </tr>
+        <% end %> 
+        <% end %> 
+</table>
+
+<h3>Items:</h3>
+<table border="1">
+  <tr>
+    <th>Item ID</th>
+    <th>Item Name</th>
+    <th>Item Description</th>
+    <th style="width:50%" >Item Images</th>
+    <th>Item Price</th>
+    <% @labels.each do |i| %>
+            <th><%=i%></th>
+      <%end %>
+    <th colspan="4"></th>
+  </tr>
+<% j =0
+  @items.each do |i| %>
+<tr>
+      <td><%= i.id %></td>
+      <td><%= i.item_name %></td>
+      <td><%= i.item_desc %></td>
+      <td>
+      <table>
+        <% i.item_attachments.all.each do |p| %>
+            <tr>
+              <td> <%= image_tag p.image.thumb.url %></td>
+              <td> <%= link_to "show image", item_attachment_path(p) %></td>
+              <td> <%= link_to "Edit image", edit_item_attachment_path(p) %></td>
+            </tr>
+        <% end %> 
+      </table> </td>
+      <td><%= i.item_price %></td>
+      <% if j<@itemspecs_all.length
+          @itemspecs_all[j].each do |k| %>
+                <td>  <%= k.value %></td>      
+          <% end %>
+         <% j= j+1 %> 
+         <% end%>
+
+      <td><% if i.item_available == 0 %>
+            <%= link_to 'mark available', markavailable_path(:user_id => i.user_id, :id => i.id, :iava => i.item_available) %>
+          <% else %>
+            <%= link_to 'mark unavailable', markavailable_path(:user_id => i.user_id,:id => i.id, :iava => i.item_available) %>
+          <% end %>
+            </td>
+      <td><%= link_to 'Show', user_item_path(:id => i.id     , :user_id => i.user_id) %></td>
+      <td><%= link_to 'Edit', edit_user_item_path(:id => i.id, :user_id => i.user_id) %></td>
+      <td><%= link_to 'Destroy', user_item_path(:id => i.id  , :user_id => i.user_id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+<% end %>
+
+</table>
+
+<br><br>
+--> <%= link_to 'update info', edit_user_path(@user) %> <br>
+
+--> <%= link_to 'delete account', user_path(:id => @user.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %> <br>
+
+--> <%= link_to 'log out', logout_path(:user_id => @user.id) , method: :delete  %> 
+</div>
+</div>
