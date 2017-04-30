@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170422080014) do
 
-  create_table "car_cats", force: :cascade do |t|
-    t.string   "Name"
-    t.decimal  "Price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "CategoryName"
     t.datetime "created_at",   null: false
