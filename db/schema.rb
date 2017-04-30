@@ -108,11 +108,11 @@ ActiveRecord::Schema.define(version: 20170422080014) do
     t.integer  "usr_delivery"
     t.string   "usr_description"
     t.string   "password_digest"
-    t.integer  "categories_id"
+    t.integer  "category_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "users", ["categories_id"], name: "index_users_on_categories_id"
+  add_index "users", ["category_id"], name: "index_users_on_category_id"
 
 end

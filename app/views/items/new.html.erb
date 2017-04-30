@@ -7,7 +7,7 @@
 <%= form_for :item, url: user_items_path  do |u| %>
 <table>
   <tr>
-    <th><%= u.hidden_field :category_id, :value => @user.categories_id %></th>
+    <th><%= u.hidden_field :category_id, :value => @user.category_id %></th>
     <th><%= u.hidden_field :item_available, :value => :"1" %></th>
     <th></th>
   </tr>

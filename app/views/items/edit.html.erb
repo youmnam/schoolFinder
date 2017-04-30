@@ -7,7 +7,7 @@
 <table>
 
 	<p>
-		<%= u.hidden_field :category_id, :value => @user.categories_id %>
+		<%= u.hidden_field :category_id, :value => @user.category_id %>
 		<tr><td> <%=	u.label :"Item Name:"         %> </td><td>  <%=	u.text_field :item_name  %></td></tr>
 		<tr><td> <%=	u.label :"Item Description:"  %> </td><td> <%=	u.text_area :item_desc  %> </td></tr>
 		<tr><td> <%=	u.label :"Item Available:"  %> </td><td> <%=	u.text_field :item_available  %> </td></tr>

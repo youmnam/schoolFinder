@@ -19,7 +19,7 @@ end
 
 def new
 	@user = User.find(params[:user_id])
-  @filters =  CategoryFilter.findByCat(@user.categories_id)
+  @filters =  CategoryFilter.findByCat(@user.category_id)
   
   @item  = @user.items.build
   @item_attachment = @item.item_attachments.build
@@ -40,7 +40,7 @@ end
 def create
   @user = User.find(params[:user_id])
  	@item = @user.items.create(item_params)
-  @filters =  CategoryFilter.findByCat(@user.categories_id)
+  @filters =  CategoryFilter.findByCat(@user.category_id)
   
   
   if @item.save
@@ -62,7 +62,7 @@ def edit
   @item = Item.find(params[:id])
   @itemSpecs = ItemSpec.findbyItem(@item.id)
     @user = User.find(params[:user_id])
-  @filters =  CategoryFilter.findByCat(@user.categories_id)
+  @filters =  CategoryFilter.findByCat(@user.category_id)
 
 end
 	 
@@ -70,7 +70,7 @@ def update
   @user = User.find(params[:user_id])
   @item = Item.find(params[:id])
 
-  @filters =  CategoryFilter.findByCat(@user.categories_id)
+  @filters =  CategoryFilter.findByCat(@user.category_id)
   @itemSpecs = ItemSpec.findbyItem(@item.id)
 
   if @item.update(item_params)

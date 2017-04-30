@@ -9,13 +9,13 @@ class UsersController < ApplicationController
 	  @user = User.find(params[:id])
 	  @items = Item.findwithuser(params[:id])
 	  
-	  @user_category = Category.find(@user.categories_id)
-	  @filters 		 = CategoryFilter.findByCat(@user.categories_id)
+	  @user_category = Category.find(@user.category_id)
+	  @filters 		 = CategoryFilter.findByCat(@user.category_id)
 	  
 
 	  labels 		 = []
 	  itemspecs_all  = []
-	  reservations    = []
+	  reservations   = []
 
 
 	  flag = 0
@@ -86,8 +86,9 @@ class UsersController < ApplicationController
 		end	
 	end
 	def destroy
-	  @user = User.find(params[:id])
 
+	  @user = User.find(params[:id])
+	  session[:user_id] = nil
 	  @user.destroy
 	 
 	  redirect_to home_index_path
