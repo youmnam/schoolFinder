@@ -7,7 +7,7 @@ class ItemSpec < ActiveRecord::Base
   
   
   def self.findbyItem(itemid)
-  	where("item_id LIKE ?", "%#{itemid}%") 
+  	where("item_id = ?", "#{itemid}") 
   end
   
   
