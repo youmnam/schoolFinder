@@ -18,7 +18,7 @@ def self.findbyCat(catid)
 end
 
 def self.findwithcategory(category_id)
-  where("category_id LIKE ?", "%#{category_id}%") 
+  where("category_id = ?", "#{category_id}") 
 end
 
 end
