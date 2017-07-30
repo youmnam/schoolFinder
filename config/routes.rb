@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-
+get 'sessions/new'
+get 'schools/text', to: 'schools#text', as: 'text'
+get 'signup', to: 'users#new',        as: 'signup'
+get 'login',  to: 'sessions#new',     as: 'login'
+get 'logout', to: 'sessions#destroy', as: 'logout'
+ 
+resources :sessions
+resources :users
 
 resources :schools 
 match 'schools/approve/:id', :to => 'schools#approve', :as => 'approve', :via => :put
