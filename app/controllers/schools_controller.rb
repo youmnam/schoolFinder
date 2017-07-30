@@ -1,10 +1,11 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authorize, except: [:create ,:new]
   # GET /schools
   # GET /schools.json
   def index
     @schools = School.all
+    render :index
   end
 
   # GET /schools/1

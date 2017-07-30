@@ -17,10 +17,10 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
   color: #b9b9b9;
-  background-color: #e3e3e3;
+  background-color: #f5f5f5;
 }
 h4 {
-  color: #7ed321;
+  color: #34b8b1;
 }
 input,
 input[type="radio"] + label,
@@ -44,10 +44,10 @@ input:focus {
   border-color: #64ac15;
 }
 input:focus + .input-icon i {
-  color: #7ed321;
+  color: #34b8b1;
 }
 input:focus + .input-icon:after {
-  border-right-color: #7ed321;
+  border-right-color: #34b8b1;
 }
 input[type="radio"] {
   display: none;
@@ -75,7 +75,7 @@ input[type="radio"]:checked + label,
 input:checked + label:before,
 select:focus,
 select:active {
-  background-color: #7ed321;
+  background-color: #34b8b1;
   color: #fff;
   border-color: #64ac15;
 }
@@ -127,7 +127,7 @@ select:active {
   outline: 0;
 }
 select option {
-  background-color: #7ed321;
+  background-color: #34b8b1;
   color: #fff;
 }
 .input-group {

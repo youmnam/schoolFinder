@@ -3,7 +3,7 @@ class Api::V1::SchoolApiController < ApplicationController
 skip_before_action :verify_authenticity_token
 
 	def getAllSchools
-	@Schools = School.all	
+	@Schools = School.where(" status = true")	
 	render json: @Schools
 	#head :no_content
 	end

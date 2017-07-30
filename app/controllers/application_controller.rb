@@ -14,7 +14,7 @@ helper_method :logged_in?
 
 
 def authorize
-    redirect_to new_user_path unless logged_in?
+    redirect_to login_path unless logged_in?
 end
 
 
