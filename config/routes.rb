@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-resources :schools
+
+
+resources :schools 
+match 'schools/approve/:id', :to => 'schools#approve', :as => 'approve', :via => :put
+  
 namespace :api, :defaults => {:format => :json} do
     namespace :v1 do  
     	  get     "/getAllSchools",              to: "api#getAllSchools"

@@ -1,4 +1,4 @@
-class CreateJobVacancies < ActiveRecord::Migration
+class CreateJobVacancies < ActiveRecord::Migration[5.1]
   def change
     create_table :job_vacancies do |t|
       t.string   :title

@@ -52,6 +52,36 @@ class SchoolsController < ApplicationController
     end
   end
 
+  def approve
+    
+    @school = School.find(params[:id])
+    respond_to do |format|
+    
+      if  SchoolTokenMailer.send_token(@school).deliver_now && @school.update_attribute(:status,true)
+      
+        format.html { redirect_to schools_url, notice: "#{@school.school_name} Was Successfully approved." }
+        format.json { head :no_content }
+    
+
+    else  
+       
+        if @school.status == false 
+          format.html {  redirect_to schools_url, notice: "#{@school.school_name} Was not approved." }
+          format.json { render json: @school.errors, status: :unprocessable_entity }
+        end
+
+        if @school.status == true 
+          format.html{ redirect_to schools_url, notice: "#{@school.school_name} Was Successfully approved but no Email was sent." }
+          format.json { render json: @school.errors, status: :unprocessable_entity }
+        end
+      
+      end
+    end
+  end
+
+
+
+
   # DELETE /schools/1
   # DELETE /schools/1.json
   def destroy

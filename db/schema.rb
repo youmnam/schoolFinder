@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728145339) do
+ActiveRecord::Schema.define(version: 20170730130738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "job_vacancies", id: :serial, force: :cascade do |t|
+  create_table "job_vacancies", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.text "qualifications"
@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 20170728145339) do
     t.index ["school_id"], name: "index_news_on_school_id"
   end
 
-  create_table "ratings", id: :serial, force: :cascade do |t|
+  create_table "ratings", force: :cascade do |t|
     t.integer "rate1"
     t.integer "rate2"
     t.integer "rate3"
     t.integer "rate4"
-    t.integer "school_id"
+    t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "username"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20170728145339) do
     t.index ["school_id"], name: "index_ratings_on_school_id"
   end
 
-  create_table "schools", id: :serial, force: :cascade do |t|
+  create_table "schools", force: :cascade do |t|
     t.string "school_name"
     t.string "school_description"
     t.string "school_city"
@@ -81,9 +81,10 @@ ActiveRecord::Schema.define(version: 20170728145339) do
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status", default: false
   end
 
-  create_table "tutors", id: :serial, force: :cascade do |t|
+  create_table "tutors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
