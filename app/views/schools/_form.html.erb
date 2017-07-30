@@ -1,216 +1,228 @@
-<body >
 
 
-<%= form_with(model: school, local: true) do |form| %>
-  <% if school.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(school.errors.count, "error") %> prohibited this school from being saved:</h2>
 
-      <ul>
-      <% school.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up Form</title>
+    <%=stylesheet_link_tag 'application' %>
+  <%=stylesheet_link_tag 'school' %>
+</head>
+
+<body>
+
+ 
+<div class="container">
+  <%= form_with(model: school, local: true) do |form| %>
+      <% if school.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+            <ul>
+            <% school.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+    <div class="row">
+      <h4> School Basic Info</h4>
+      
+      <div class="input-group input-group-icon">
+          <%= form.text_field :school_name, id: :school_school_name , placeholder: "School Name" %>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+
+      <div class="input-group input-group-icon">
+          <%= form.text_field :school_description, id: :school_school_description, placeholder: "Short Overview"%>
+        <div class="input-icon"><i class="fa fa-address-card-o"></i></div>
+      </div>
+      
+      <div class="input-group input-group-icon">
+            <%= form.text_field :school_website, id: :school_school_website, placeholder: "School Website"%>
+          <div class="input-icon"><i class="fa fa-globe"></i></div>
+        </div>
+        
+        <div class="input-group input-group-icon">
+            <%= form.text_field :school_app, id: :school_school_app, placeholder: "Communication App URL"%>
+          <div class="input-icon"><i class="fa fa-comments-o"></i></div>
+        </div>
+      
+      <h4> Contact Info </h4>
+      
+      <div class="input-group input-group-icon">
+        <%= form.text_field :school_email, id: :school_school_email , placeholder: "School Email" %>
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+      
+      <div class="input-group input-group-icon">
+          <%= form.text_field :school_telephone, id: :school_school_telephone , placeholder: "Telephone No." %>
+        <div class="input-icon"><i class="fa fa-phone"></i></div>
+      </div>
+      
+      <div class="row">
+     <div class="col-half">
+
+        <select name="school[school_city]" id="select1" style="width:100%">
+             <option>City</option>
+                  <option value="Cairo">           Cairo            </option>
+                  <option value="Alexandria City"> Alexandria City  </option>
+                  <option value="Giza">            Giza             </option>
+                  <option value="6 Of October" >   6 Of October     </option>
+                  <option value="10th Of Ramdan City">    10th Of Ramdan City     </option>
+                  <option value="Al Arish" >    Al Arish              </option>
+                  <option value="Al Mahala" >   Al Mahala             </option>
+                  <option value="Al Mansourah" >Al Mansourah              </option>
+                  <option value="Assuit" >      Assuit              </option>
+                  <option value="Aswan" >       Aswan             </option>
+                  <option value="Bani Swif" >   Bani Swif             </option>
+                  <option value="Benha" >       Benha             </option>
+                  <option value="Damanhour" >   Damanhour             </option>
+                  <option value="Dumiat" >      Dumiat              </option>
+                  <option value="El Wadi El Gadid" > El Wadi El Gadid              </option>
+                  <option value="Fayoum" > Fayoum              </option>
+                  <option value="Giza" >  Giza              </option>
+                  <option value="Helwan" > Helwan              </option>
+                  <option value="Hurghada" > Hurghada              </option>
+                  <option value="Ismailia" >Ismailia              </option>
+                  <option value="Kafr Al Sheikh" >Kafr Al Sheikh              </option>
+                  <option value="Luxor" >Luxor             </option>
+                  <option value="Marsa Matrouh" >Marsa Matrouh             </option>
+                  <option value="Minia" >Minia             </option>
+                  <option value="New Salhia" >    New Salhia              </option>
+                  <option value="Port Said" >     Port Said             </option>
+                  <option value="Qena" >  Qena              </option>
+                  <option value="Sadat City" >Sadat City              </option>
+                  <option value="Sharm Sheikh" >      Sharm Sheikh              </option>
+                  <option value="Shebin El Koum" >Shebin El Koum              </option>
+                  <option value="Sohag City" > Sohag City              </option>
+                  <option value="Suez" >   Suez              </option>
+                  <option value="Tanta" >      Tanta             </option>
+                  <option value="Zakazik" >      Zakazik             </option>
+              </select>
+                </div>
+          <div class="col-half">
+            <div class="input-group ">
+                  <select name="school[school_area]" id="select2" style="width:100%"> 
+                        <option value="Zakazik" >Area</option>
+                  </select>
+                  </div>
+              </div>
+        </div>
+    
+    <div class="row">
+ 
+     <div class="input-group input-group-icon">
+            <%= form.text_field :school_address, id: :school_school_address, placeholder: "School Adress"%>
+          <div class="input-icon"><i class="fa fa-map-marker"></i></div>
+        </div>
     </div>
-  <% end %>
+    <div class="row">
+      <h4>Admission Status</h4>
+      <div class="input-group">
+        <input type="radio" name="school[admission_status]" value="1" id="payment-method-card" checked="true"/>
+        <label for="payment-method-card"><span><i class="fa fa-volume-up"></i>open</span></label>
+        <input type="radio" name="school[admission_status]" value="0" id="payment-method-paypal"/>
+        <label for="payment-method-paypal" > <span><i class="fa fa-volume-off"></i>close</span></label>
+      </div>
+      <div class="input-group input-group-icon">
+        <%= form.text_field :admission_email, id: :school_admission_email, placeholder: "Admission Office email" %>
+        <div class="input-icon"><i class="fa fa-pencil-square-o"></i></div>
+      </div>
+      
+      <h4>School System Info</h4>
+      <div class="input-group input-group-icon">
+          <%= form.text_field :school_feesRange, id: :school_school_feesRange,  placeholder: "Average Fees/Year" %>
+          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+      </div>      
+      
+      <div class="col-half">
+        <div class="input-group input-group-icon">
+         <%= form.text_field :school_eduSystem, id: :school_school_eduSystem,  placeholder: "Education System" %>
+          <div class="input-icon"><i class="fa fa-graduation-cap"></i></div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_name %>
-    <%= form.text_field :school_name, id: :school_school_name %>
-  </div>
+      <div class="col-half">
+        <div class="input-group input-group-icon">
+         <%= form.text_field :school_curriculum, id: :school_school_curriculum,  placeholder: "Curriculum Type" %>
+          <div class="input-icon"><i class="fa fa-book"></i></div>
+        </div>
+      </div>
+      </div>
+      
+      <div class="row">
+          <div class="input-group ">   
+             <%= form.check_box :school_foreignTeachers, id: :school_school_foreignTeachers %>
+             <%= form.label :school_foreignTeachers, " Foreign Teachers"  %>
+            </div>
+             <div class="input-group input-group-icon">
+         <%= form.text_field :school_availableGrades, id: :school_school_availableGrades,  placeholder: "Grades Available till? (8,12?)" %>
+          <div class="input-icon"><i class="fa fa-cubes"></i></div>
+        </div>
+           <div class="input-group input-group-icon">
+         <%= form.text_field :school_school_age, id: :school_school_age,  placeholder: "Founded at (eg. 1990)" %>
+          <div class="input-icon"><i class="fa fa-history"></i></div>
+        </div>
+      </div>
+  
 
-  <div class="field">
-    <%= form.label :school_description %>
-    <%= form.text_field :school_description, id: :school_school_description %>
-  </div>
-<div class="field">
-  School City<select name="school[school_city]" id="select1">
-     <option value="">Please Choose the City</option>
-    			<option value="Cairo" >
-								Cairo							</option>
-                	<option value="Alexandria City" >
-								Alexandria City							</option>
-                <option value="Giza" >
-								Giza							</option>
-														<option value="6 Of October" >
-								6 Of October							</option>
-                <option value="10th Of Ramdan City">		10th Of Ramdan City			</option>
-														<option value="Al Arish" >
-								Al Arish							</option>
-														<option value="Al Mahala" >
-								Al Mahala							</option>
-														<option value="Al Mansourah" >
-								Al Mansourah							</option>
-													
-														<option value="Assuit" >
-								Assuit							</option>
-														<option value="Aswan" >
-								Aswan							</option>
-														<option value="Bani Swif" >
-								Bani Swif							</option>
-														<option value="Benha" >
-								Benha							</option>
-											
-														<option value="Damanhour" >
-								Damanhour							</option>
-														<option value="Dumiat" >
-								Dumiat							</option>
-														<option value="El Wadi El Gadid" >
-								El Wadi El Gadid							</option>
-														<option value="Fayoum" >
-								Fayoum							</option>
-														<option value="Giza" >
-								Giza							</option>
-														<option value="Helwan" >
-								Helwan							</option>
-														<option value="Hurghada" >
-								Hurghada							</option>
-														<option value="Ismailia" >
-								Ismailia							</option>
-														<option value="Kafr Al Sheikh" >
-								Kafr Al Sheikh							</option>
-														<option value="Luxor" >
-								Luxor							</option>
-														<option value="Marsa Matrouh" >
-								Marsa Matrouh							</option>
-														<option value="Minia" >
-								Minia							</option>
-														<option value="New Salhia" >
-								New Salhia							</option>
-														<option value="Port Said" >
-								Port Said							</option>
-														<option value="Qena" >
-								Qena							</option>
-														<option value="Sadat City" >
-								Sadat City							</option>
-														<option value="Sharm Sheikh" >
-								Sharm Sheikh							</option>
-														<option value="Shebin El Koum" >
-								Shebin El Koum							</option>
-														<option value="Sohag City" >
-								Sohag City							</option>
-														<option value="Suez" >
-								Suez							</option>
-														<option value="Tanta" >
-								Tanta							</option>
-														<option value="Zakazik" >
-								Zakazik							</option>
-												</select>
+      <h4>School Facilities</h4>
+      <div class="input-group">
+          <%= form.check_box :school_cafeteria, id: :school_school_cafeteria %>
+          <%= form.label :school_cafeteria %>
+      </div>
 
-</select>
-<br />
-
-School Area<select name="school[school_area]" id="select2">
-</select>
-
-
-</div>
-  <div class="field">
-    <%= form.label :school_curriculum %>
-    <%= form.text_field :school_curriculum, id: :school_school_curriculum %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_foreignTeachers %>
-    <%= form.check_box :school_foreignTeachers, id: :school_school_foreignTeachers %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_feesRange %>
-    <%= form.text_field :school_feesRange, id: :school_school_feesRange %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_availableGrades %>
-    <%= form.text_field :school_availableGrades, id: :school_school_availableGrades %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_age %>
-    <%= form.number_field :school_age, id: :school_school_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_website %>
-    <%= form.text_field :school_website, id: :school_school_website %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_telephone %>
-    <%= form.text_field :school_telephone, id: :school_school_telephone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_email %>
-    <%= form.text_field :school_email, id: :school_school_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_app %>
-    <%= form.text_field :school_app, id: :school_school_app %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_address %>
-    <%= form.text_field :school_address, id: :school_school_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admission_status %>
-    <%= form.text_field :admission_status, id: :school_admission_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admission_email %>
-    <%= form.text_field :admission_email, id: :school_admission_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_cafeteria %>
-    <%= form.check_box :school_cafeteria, id: :school_school_cafeteria %>
-  </div>
-
-  <div class="field">
-    <%= form.label :school_soccerPlayground %>
+     <div class="input-group">
     <%= form.check_box :school_soccerPlayground, id: :school_school_soccerPlayground %>
-  </div>
+    <%= form.label :school_soccerPlayground %>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_InnovationSpaces %>
+           <div class="input-group">
+
     <%= form.check_box :school_InnovationSpaces, id: :school_school_InnovationSpaces %>
-  </div>
+    <%= form.label :school_InnovationSpaces %>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_theater %>
+           <div class="input-group">
     <%= form.check_box :school_theater, id: :school_school_theater %>
-  </div>
+        <%= form.label :school_theater %>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_computerLabs %>
+
+           <div class="input-group">
     <%= form.check_box :school_computerLabs, id: :school_school_computerLabs %>
-  </div>
+               <%= form.label :school_computerLabs %>
 
-  <div class="field">
-    <%= form.label :school_scienceLab %>
+      </div>
+
+           <div class="input-group">
     <%= form.check_box :school_scienceLab, id: :school_school_scienceLab %>
-  </div>
+           <%= form.label :school_scienceLab %>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_library %>
+           <div class="input-group">
     <%= form.check_box :school_library, id: :school_school_library %>
-  </div>
+     <%= form.label :school_library %>
+      </div>
 
-  <div class="field">
-    <%= form.label :school_swimmingPool %>
+           <div class="input-group">
+
     <%= form.check_box :school_swimmingPool, id: :school_school_swimmingPool %>
-  </div>
+<%= form.label :school_swimmingPool %>
+      </div>
 
-  <div>
+    </div>
+
+   <div class="input-group">
     <%= form.label :school_logo %>
     <%= form.file_field :school_logo, multiple: false %>
 </div>
 
-  <div>
+   <div class="input-group">
     <%= form.label :school_images %>
     <%= form.file_field :school_images, multiple: true %>
 </div>
@@ -218,10 +230,15 @@ School Area<select name="school[school_area]" id="select2">
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
-</body>
+
+  <% end %>
+</div>
 
 
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="js/index.js"></script>
+    
 
 <script>
 var select1 = document.getElementById("select1");
@@ -274,3 +291,6 @@ select1.onchange = function() {
        select2.appendChild(el);}
 }
 </script>
+</body>
+</html>
+

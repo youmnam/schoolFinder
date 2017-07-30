@@ -29,7 +29,7 @@ class SchoolsController < ApplicationController
 
     respond_to do |format|
       if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
+        format.html {render :success }
         format.json { render :show, status: :created, location: @school }
       else
         format.html { render :new }
