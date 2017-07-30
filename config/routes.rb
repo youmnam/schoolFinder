@@ -1,43 +1,29 @@
 Rails.application.routes.draw do
-  resources :renters
-  resources :item_attachments
-  get 'sessions/new'
-
-  resources :categorys do
-  resources :category_filters
-  end
-  
-  get 'home/index'
-  root 'home#index'
-  resources :users do
-      resources :items 
-  end
-  
-resources :reservations
-
-  patch   '/uploadlogo',      to: 'users#uploadlogo'
-
-  get     '/markavailable',   to: 'items#markavailable'
-  get	    '/showcat',         to: 'category_items#show'
-  get     '/viewitem',        to: 'items#index'
-  get     '/changeStatus',    to: 'reservations#changeStatus'
-
-  get     '/login',           to: 'sessions#new'
-  post    '/login',           to: 'sessions#create'
-  get     '/loginrenter',     to: 'sessions#loginrenter'
-  post    '/loginrenter',     to: 'sessions#createrenter'
-  post    '/searchItems',     to: 'category_items#searchCat'
-  delete  '/logout',          to: 'sessions#destroy'
-
-
+resources :schools
 namespace :api, :defaults => {:format => :json} do
-    namespace :v1 do
-      get     "/getAllCategories",     to: "api#getAllCategories"
-      get     "/getItems",             to: "api#getItems"
-      get     "/getItemInfo",          to: "api#getItemInfo"
-      get     "/getVendorInfo",        to: "api#getVendorInfo"
-      get     "/getCategoryFilter",      to: "api#getCategoryFilter"
-      
+    namespace :v1 do  
+    	  get     "/getAllSchools",              to: "api#getAllSchools"
+        get     "/getAllSchoolsNames",               to: "school_api#getAllSchoolsNames"
+        get     "/getAllSchoolsWithAdmissionON",to: "school_api#find_school_withAdmissionON" 
+    	  post    "/add_new_school",             to: "api#add_new_school"
+    	  post    "/search_school",              to: "api#Search_school"
+    	  post    "/getSchoolRating",            to: "ratings#getSchoolRating"
+        get     "/getSchoolDetailsRating/:id",     to: "ratings#getSchoolDetailsRating"
+        get     "/getSchoolRatersComments/:id",     to: "ratings#getSchoolRatingMessages"
+    	  post    "/add_school_rating",          to: "ratings#add_school_rating"
+    	  get     "/getAllJobVacancies",         to: "school_api#get_all_job_vacancies"
+        get     "/getSchoolInfo/:id",          to: "school_api#get_school_info"
+        post    "/searchForVacancy",           to: "job_vacancy#search_for_vacancy"
+        post    "/AddJobVacancy",              to: "job_vacancy#add_job_vacancy"
+        get     "/getJobVacancyDetails/:id",   to: "job_vacancy#get_job_vacancy_details"
+        post    "/addTutorPosition",           to: "tutor#add_tutor_postion"
+        get     "/getAllTutor",                to: "tutor#getAllTutor"
+        post    "/addmission",                 to: "school_api#addmission"
+        post    "/job_addmission",             to: "job_vacancy#job_addmission"
+        
+        post    "/addNews",                    to: "news#add_new_news"
+        post    "/getNewsSchool",              to: "news#getNewsSchool"
+        post    "/getAllNewsbyDate",           to: "news#getAllNewsbyDate"
     end
   end
 

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,101 +10,90 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170422080014) do
+ActiveRecord::Schema.define(version: 20170728145339) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string   "CategoryName"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  create_table "category_filters", force: :cascade do |t|
-    t.string   "nameOfLabel"
-    t.string   "typeOfLabel"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "category_filters", ["category_id"], name: "index_category_filters_on_category_id"
-
-  create_table "item_attachments", force: :cascade do |t|
-    t.integer  "item_id"
-    t.string   "image"
+  create_table "job_vacancies", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "qualifications"
+    t.datetime "opened_at"
+    t.string "school_name"
+    t.string "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "item_specs", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "category_filter_id"
-    t.string   "value"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+  create_table "news", force: :cascade do |t|
+    t.string "text"
+    t.datetime "date"
+    t.bigint "school_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_news_on_school_id"
   end
 
-  add_index "item_specs", ["category_filter_id"], name: "index_item_specs_on_category_filter_id"
-  add_index "item_specs", ["item_id"], name: "index_item_specs_on_item_id"
-
-  create_table "items", force: :cascade do |t|
-    t.string   "item_name"
-    t.string   "item_desc"
-    t.decimal  "item_price"
-    t.string   "item_per"
-    t.string   "item_maxp"
-    t.string   "item_minp"
-    t.integer  "item_status"
-    t.integer  "item_available"
-    t.string   "item_nviews"
-    t.string   "item_nvreqs"
-    t.integer  "user_id",        null: false
-    t.integer  "category_id",    null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "ratings", id: :serial, force: :cascade do |t|
+    t.integer "rate1"
+    t.integer "rate2"
+    t.integer "rate3"
+    t.integer "rate4"
+    t.integer "school_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "username"
+    t.text "email"
+    t.text "comment"
+    t.index ["school_id"], name: "index_ratings_on_school_id"
   end
 
-  add_index "items", ["category_id"], name: "index_items_on_category_id"
-  add_index "items", ["user_id"], name: "index_items_on_user_id"
-
-  create_table "renters", force: :cascade do |t|
-    t.string   "renter_name"
-    t.string   "renter_email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "reservations", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "renter_id"
-    t.date     "from"
-    t.date     "to"
-    t.string   "name"
-    t.string   "email"
-    t.integer  "status"
+  create_table "schools", id: :serial, force: :cascade do |t|
+    t.string "school_name"
+    t.string "school_description"
+    t.string "school_city"
+    t.string "school_area"
+    t.string "school_curriculum"
+    t.string "school_certificate"
+    t.string "school_eduSystem"
+    t.boolean "school_foreignTeachers"
+    t.string "school_feesRange"
+    t.string "school_availableGrades"
+    t.integer "school_age"
+    t.string "school_website"
+    t.string "school_telephone"
+    t.string "school_email"
+    t.string "school_app"
+    t.string "school_address"
+    t.string "admission_status"
+    t.string "admission_email"
+    t.boolean "school_cafeteria"
+    t.boolean "school_soccerPlayground"
+    t.boolean "school_InnovationSpaces"
+    t.boolean "school_theater"
+    t.boolean "school_computerLabs"
+    t.boolean "school_scienceLab"
+    t.boolean "school_library"
+    t.boolean "school_swimmingPool"
+    t.string "school_logo"
+    t.json "school_images"
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "reservations", ["item_id"], name: "index_reservations_on_item_id"
-  add_index "reservations", ["renter_id"], name: "index_reservations_on_renter_id"
-
-  create_table "users", force: :cascade do |t|
-    t.string   "usr_vname"
-    t.string   "usr_email"
-    t.string   "usr_tel"
-    t.string   "usr_address"
-    t.string   "usr_gover"
-    t.string   "usr_city"
-    t.string   "usr_logo"
-    t.integer  "usr_delivery"
-    t.string   "usr_description"
-    t.string   "password_digest"
-    t.integer  "category_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+  create_table "tutors", id: :serial, force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.text "phone"
+    t.text "description"
+    t.string "current_job"
+    t.text "qualifications"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "users", ["category_id"], name: "index_users_on_category_id"
-
+  add_foreign_key "ratings", "schools"
 end

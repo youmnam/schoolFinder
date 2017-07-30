@@ -1,0 +1,2 @@
+json.extract! school, :id, :school_name, :school_description, :school_city, :school_area, :school_curriculum, :school_foreignTeachers, :school_feesRange, :school_availableGrades, :school_age, :school_website, :school_telephone, :school_email, :school_app, :school_address, :admission_status, :admission_email, :school_cafeteria, :school_soccerPlayground, :school_InnovationSpaces, :school_theater, :school_computerLabs, :school_scienceLab, :school_library, :school_swimmingPool, :created_at, :updated_at
+json.url school_url(school, format: :json)

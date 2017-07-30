@@ -1,0 +1,106 @@
+
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+<body>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Schools</h1>
+
+<table>
+  <thead>
+    <tr>
+     <th>School Id </th>
+      <th>School name</th>
+      <th>School description</th>
+      <th>School city</th>
+      <th>School area</th>
+      <th>School EduSystem</th>
+      <th>School curriculum</th>
+      <th>School foreignteachers</th>
+      <th>School feesrange</th>
+      <th>School availablegrades</th>
+      <th>School age</th>
+      <th>School website</th>
+      <th>School telephone</th>
+      <th>School email</th>
+      <th>School app</th>
+      <th>School address</th>
+      <th>Admission status</th>
+      <th>Admission email</th>
+      <th>School cafeteria</th>
+      <th>School soccerplayground</th>
+      <th>School innovationspaces</th>
+      <th>School theater</th>
+      <th>School computerlabs</th>
+      <th>School sciencelab</th>
+      <th>School library</th>
+      <th>School swimmingpool</th>
+      <th>School Token</th>
+      <th colspan="3">    Controls </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schools.each do |school| %>
+      <tr>\
+        <td><%= school.id  %></td>
+        <td><%= school.school_name %></td>
+        <td><%= school.school_description %></td>
+        <td><%= school.school_city %></td>
+        <td><%= school.school_area %></td>
+        <td><%= school.school_eduSystem %></td>
+        <td><%= school.school_curriculum %></td>
+        <td><%= school.school_foreignTeachers %></td>
+        <td><%= school.school_feesRange %></td>
+        <td><%= school.school_availableGrades %></td>
+        <td><%= school.school_age %></td>
+        <td><%= school.school_website %></td>
+        <td><%= school.school_telephone %></td>
+        <td><%= school.school_email %></td>
+        <td><%= school.school_app %></td>
+        <td><%= school.school_address %></td>
+        <td><%= school.admission_status %></td>
+        <td><%= school.admission_email %></td>
+        <td><%= school.school_cafeteria %></td>
+        <td><%= school.school_soccerPlayground %></td>
+        <td><%= school.school_InnovationSpaces %></td>
+        <td><%= school.school_theater %></td>
+        <td><%= school.school_computerLabs %></td>
+        <td><%= school.school_scienceLab %></td>
+        <td><%= school.school_library %></td>
+        <td><%= school.school_swimmingPool %></td>
+        <td><%= school.token %></td>
+        <td><%= link_to 'Show', school %></td>
+        <td><%= link_to 'Edit', edit_school_path(school) %></td>
+        <td><%= button_to  'Destroy', school,   method: :delete , data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New School', new_school_path %>
+
+
+</body>
+
