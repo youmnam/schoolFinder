@@ -5,20 +5,19 @@
 #   gem 'sqlite3'
 #
 default: &default
-  host: localhost
   adapter: postgresql
-  username: pguser
-  password: irentex9092
-  database: schoolfinder-development
+  username: postgres
+  password: 102040
+  database: schoolfinder-master
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
   adapter: postgresql
-  username: pguser
-  password: irentex9092
-  database: schoolfinder-development
+  username: postgres
+  password: 102040
+  database: schoolfinder-master
   pool: 5
   timeout: 5000
 
@@ -28,17 +27,17 @@ development:
 test:
   <<: *default
   adapter: postgresql
-  username: pguser
-  password: irentex9092
-  database: schoolfinder-development
+  username: postgres
+  password: 102040
+  database: schoolfinder-master
   pool: 5
   timeout: 5000
 
 production:
   <<: *default
   adapter: postgresql
-  username: pguser
-  password: irentex9092
-  database: schoolfinder-development
+  username: postgres
+  password: 102040
+  database: schoolfinder-master
   pool: 5
   timeout: 5000

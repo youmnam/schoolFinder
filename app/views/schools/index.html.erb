@@ -56,14 +56,15 @@ tr:nth-child(even) {
       <th>School swimmingpool</th>
       <th>School Token</th>
       <th>School status</th>
-      <th colspan="4">    Controls </th>
+      <th>School Expiring Date</th>
+      <th colspan="6"> Controls </th>
     </tr>
   </thead>
 
   <tbody>
     <% @schools.each do |school| %>
+     <% #form_for school , validate: true do |form| %>
       <tr>
-     
         <td><%= school.id  %></td>
         <td><%= school.school_name %></td>
         <td><%= school.school_description %></td>
@@ -92,18 +93,26 @@ tr:nth-child(even) {
         <td><%= school.school_swimmingPool %></td>
         <td><%= school.token %></td>
         <td><%= school.status %></td>
+        <td><%= school.expire  %> || <%= DateTime.now %></td>
         <td><%= button_to 'Approve', approve_path(school) , method: :put ,:confirm => "Are you sure?"%></td>
         <td><%= link_to 'Show', school %></td>
         <td><%= link_to 'Edit', edit_school_path(school) %></td>
         <td><%= button_to  'Destroy', school,   method: :delete , data: { confirm: 'Are you sure?' } %></td>
+     <td>
+     <% if school.status == true%>
+     <%= form_for(school, url: subscribe_path(school), html: {method: "put"})  do |form| %>
+     <%= form.text_field  :expire , id: :school_expire %>
+     <%= form.submit 'Renew' %>  
+     <% end %>
+     <% end %>
+  </td>
       </tr>
-     
+      <%# end %>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
 <%= link_to 'New School', new_school_path %>
 
 

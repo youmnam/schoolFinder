@@ -40,7 +40,7 @@ gem 'uniqueness'
 gem 'jquery-rails'
 gem "font-awesome-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 # for api gems
@@ -68,5 +68,11 @@ group :development do
   gem 'spring'
 end
 
+#Validates on the client side 
+gem 'client_side_validations'
+gem 'valid_url'
+gem 'validates_email_format_of'
 
-#gem 'tzinfo-data'
+
+#schedule tasks for subscriptions 
+#gem 'whenever', :require => false

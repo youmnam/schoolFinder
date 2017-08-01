@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
- protect_from_forgery with: :exception
+
 
 
   private
@@ -11,6 +11,53 @@ end
 
 helper_method :logged_in?
 
+def expired_news?
+
+
+  @school = School.find(params[:newss_param][:school_id])
+
+
+  if DateTime.now > @school.expire
+        return true 
+    else 
+        return false 
+  end 
+
+ 
+end  
+
+helper_method :expired_news?
+
+def subscription_expired_news
+  
+    @y = "your subscription has ended , Please Renew your subscription"
+    render json: @y if expired_news?
+   
+end  
+
+def expired_jobs?
+
+
+  @school = School.find(params[:job_vacancy][:school_id])
+
+
+  if DateTime.now > @school.expire
+        return true 
+    else 
+        return false 
+  end 
+
+ 
+end  
+
+helper_method :expired_jobs?
+
+def subscription_expired_jobs
+  
+    @y = "your subscription has ended , Please Renew your subscription"
+    render json: @y if expired_jobs?
+   
+end  
 
 
 def authorize

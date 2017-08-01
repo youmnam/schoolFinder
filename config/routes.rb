@@ -9,7 +9,8 @@ resources :sessions
 resources :users
 
 resources :schools 
-match 'schools/approve/:id', :to => 'schools#approve', :as => 'approve', :via => :put
+match 'schools/approve/:id',   :to => 'schools#approve'  , :as => 'approve'  , :via => :put
+match 'schools/subscribe/:id', :to => 'schools#subscribe', :as => 'subscribe', :via => :put
   
 namespace :api, :defaults => {:format => :json} do
     namespace :v1 do  

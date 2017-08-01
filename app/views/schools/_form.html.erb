@@ -15,7 +15,7 @@
 
  
 <div class="container">
-  <%= form_with(model: school, local: true) do |form| %>
+<%= form_for school , validate: true do |form| %>
       <% if school.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(school.errors.count, "error") %> prohibited this school from being saved:</h2>
@@ -31,8 +31,8 @@
     <div class="row">
       <h4> School Basic Info</h4>
       
-      <div class="input-group input-group-icon">
-          <%= form.text_field :school_name, id: :school_school_name , placeholder: "School Name" %>
+      <div class="input-group input-group-icon">   
+             <%= form.text_field :school_name, id: :school_school_name , placeholder: "School Name" ,validate: { presence: true, uniqueness: false }%>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
 
@@ -67,7 +67,7 @@
      <div class="col-half">
 
         <select name="school[school_city]" id="select1" style="width:100%">
-             <option>City</option>
+             <option value=nil>City</option>
                   <option value="Cairo">           Cairo            </option>
                   <option value="Alexandria City"> Alexandria City  </option>
                   <option value="Giza">            Giza             </option>
@@ -107,7 +107,7 @@
           <div class="col-half">
             <div class="input-group ">
                   <select name="school[school_area]" id="select2" style="width:100%"> 
-                        <option value="Zakazik" >Area</option>
+                        <option value="nil" >Area</option>
                   </select>
                   </div>
               </div>
@@ -164,7 +164,7 @@
           <div class="input-icon"><i class="fa fa-cubes"></i></div>
         </div>
            <div class="input-group input-group-icon">
-         <%= form.text_field :school_school_age, id: :school_school_age,  placeholder: "Founded at (eg. 1990)" %>
+         <%= form.text_field :school_age, id: :school_school_age,  placeholder: "Founded at (eg. 1990)" %>
           <div class="input-icon"><i class="fa fa-history"></i></div>
         </div>
       </div>
@@ -234,6 +234,9 @@
   <% end %>
 </div>
 
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "rails.validations.js" %>
+<% end %>
 
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 

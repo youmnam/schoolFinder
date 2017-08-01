@@ -59,10 +59,10 @@ class SchoolsController < ApplicationController
     respond_to do |format|
     
       if  SchoolTokenMailer.send_token(@school).deliver_now && @school.update_attribute(:status,true)
-      
+       if @school.update_attribute(:expire,DateTime.now + 30.days) 
         format.html { redirect_to schools_url, notice: "#{@school.school_name} Was Successfully approved." }
         format.json { head :no_content }
-    
+       end
 
     else  
        
@@ -80,7 +80,21 @@ class SchoolsController < ApplicationController
     end
   end
 
+def subscribe
+   @school = School.find(params[:id])
 
+    respond_to do |format|
+  if @school.update_attribute(:expire,DateTime.now.to_date + params[:school][:expire].to_i.days) 
+       format.html { redirect_to schools_url, notice: "#{@school.school_name} Was Successfully Renewed its Subscription." }
+        format.json { head :no_content }
+        #@school.save
+   else 
+       format.html {  redirect_to schools_url, notice: "#{@school.school_name} Subscription was not renewed ." }
+          format.json { render json: @school.errors, status: :unprocessable_entity }
+      end
+    end   
+
+end 
 
 
   # DELETE /schools/1

@@ -1,5 +1,8 @@
 class Api::V1::NewsController < ApplicationController
 
+
+
+  before_action :subscription_expired_news ,only: :add_new_news
   skip_before_action :verify_authenticity_token
 	
 		
@@ -50,4 +53,6 @@ end
     	params[:newss_param][:date] = DateTime.now.to_date
       params.require(:newss_param).permit(:text,:date,:school_id)
     end
+
+ 
 end
