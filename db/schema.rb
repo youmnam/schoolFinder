@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801113249) do
+ActiveRecord::Schema.define(version: 20170801161923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "email_views", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "position"
+    t.string "cv_path"
+  end
 
   create_table "job_vacancies", force: :cascade do |t|
     t.string "title"
@@ -28,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170801113249) do
 
   create_table "news", force: :cascade do |t|
     t.string "text"
-    t.datetime "date"
+    t.date "date"
     t.bigint "school_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

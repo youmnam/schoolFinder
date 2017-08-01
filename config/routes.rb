@@ -14,24 +14,28 @@ match 'schools/subscribe/:id', :to => 'schools#subscribe', :as => 'subscribe', :
   
 namespace :api, :defaults => {:format => :json} do
     namespace :v1 do  
-    	  get     "/getAllSchools",              to: "api#getAllSchools"
-        get     "/getAllSchoolsNames",               to: "school_api#getAllSchoolsNames"
-        get     "/getAllSchoolsWithAdmissionON",to: "school_api#find_school_withAdmissionON" 
-    	  post    "/add_new_school",             to: "api#add_new_school"
-    	  post    "/search_school",              to: "api#Search_school"
-    	  post    "/getSchoolRating",            to: "ratings#getSchoolRating"
-        get     "/getSchoolDetailsRating/:id",     to: "ratings#getSchoolDetailsRating"
-        get     "/getSchoolRatersComments/:id",     to: "ratings#getSchoolRatingMessages"
-    	  post    "/add_school_rating",          to: "ratings#add_school_rating"
-    	  get     "/getAllJobVacancies",         to: "school_api#get_all_job_vacancies"
-        get     "/getSchoolInfo/:id",          to: "school_api#get_school_info"
-        post    "/searchForVacancy",           to: "job_vacancy#search_for_vacancy"
+    	  get     "/getAllSchools",                to: "school_api#getAllSchools"
+        get     "/getAllSchoolsNames",           to: "school_api#getAllSchoolsNames"
+        get     "/getAllSchoolsWithAdmissionON", to: "school_api#find_school_withAdmissionON" 
+    	  post    "/add_new_school",               to: "school_api#add_new_school"
+    	  post    "/search_school",                to: "school_api#Search_school"
+        get     "/getAllJobVacancies",           to: "school_api#get_all_job_vacancies"
+        get     "/getSchoolInfo/:id",            to: "school_api#get_school_info"
+        post    "/addmission",                   to: "school_api#addmission"
+
+        post    "/add_school_rating",            to: "ratings#add_school_rating"
+    	  post    "/getSchoolRating",              to: "ratings#getSchoolRating"
+        get     "/getSchoolDetailsRating/:id",   to: "ratings#getSchoolDetailsRating"
+        get     "/getSchoolRatersComments/:id",  to: "ratings#getSchoolRatingMessages"
+  
         post    "/AddJobVacancy",              to: "job_vacancy#add_job_vacancy"
         get     "/getJobVacancyDetails/:id",   to: "job_vacancy#get_job_vacancy_details"
+        post    "/searchForVacancy",           to: "job_vacancy#search_for_vacancy"
+        post    "/job_addmission",             to: "job_vacancy#job_addmission"
+
         post    "/addTutorPosition",           to: "tutor#add_tutor_postion"
         get     "/getAllTutor",                to: "tutor#getAllTutor"
-        post    "/addmission",                 to: "school_api#addmission"
-        post    "/job_addmission",             to: "job_vacancy#job_addmission"
+        
         
         post    "/addNews",                    to: "news#add_new_news"
         post    "/getNewsSchool",              to: "news#getNewsSchool"

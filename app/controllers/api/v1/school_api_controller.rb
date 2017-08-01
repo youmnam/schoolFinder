@@ -2,14 +2,32 @@ class Api::V1::SchoolApiController < ApplicationController
 
 skip_before_action :verify_authenticity_token
 
+
+
 	def getAllSchools
-	@Schools = School.where(" status = true")	
-	render json: @Schools
-	#head :no_content
+	 	@Schools = School.select("schools.id , schools.school_name,  schools.school_city , schools.school_area , schools.\"school_feesRange\" , schools.school_logo,
+                (select  ( (sum(rate1)/count(id))+ (sum(rate2)/count(id)) +(sum(rate3)/count(id)) + (sum(rate4)/count(id)) ) /4 as Total_Rating 
+	 	           	 from ratings where schools.id = ratings.school_id group by school_id ) , 
+	 	           	 (select   count(id) as num_raters 
+	 	           	 from ratings where schools.id = ratings.school_id group by school_id ) 
+	 	 ").where("status = true")
+
+
+	render json: @Schools.to_json
+	 	#head :no_content
 	end
 
+
+
+
+  	def getTopRatingSchools
+    	@Schools = School.select("Distinct Schools.*").joins(' , "ratings" where "Schools"."id" = "ratings"."school_id" and ("ratings".rate1+"ratings".rate2+"ratings".rate3+ "ratings".rate4)/4.0 > ' + params[:id])
+    	render json: @Schools.to_json
+    
+  	end
+  
 	def getAllSchoolsNames
-	@Schools = School.select('id, school_name').all	
+	@Schools = School.select('id, school_name').where(" status = true")	
 	render json: @Schools.to_json
 	#head :no_content
 	end
@@ -43,9 +61,11 @@ skip_before_action :verify_authenticity_token
       @school = School.find_school(params[:search_school])
       render json: @school
     end
+
+
 	
 	def find_school_withAdmissionON
-      @school = School.where("admission_status = '1'")
+      @school = School.where("admission_status = '1' AND status = true")
       render json: @school
     end
 	

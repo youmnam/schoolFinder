@@ -8,12 +8,7 @@ skip_before_action :verify_authenticity_token
 	 	render json: @Schools
 	end
 	
-  def getTopRatingSchools
-    @Schools = School.select("Distinct Schools.*").joins(' , "ratings" where "Schools"."id" = "ratings"."school_id" and ("ratings".rate1+"ratings".rate2+"ratings".rate3+ "ratings".rate4)/4.0 > ' + params[:id])
-    render json: @Schools.to_json
-    
-  end
-  
+
 	def index
 	  @Schools = School.all 	
     render json: @Schools

@@ -1,5 +1,5 @@
 class Api::V1::JobVacancyController < ApplicationController
-before_action :subscription_expired_jobs ,only: :add_job_vacancy
+
 skip_before_action :verify_authenticity_token
 
     def search_for_vacancy
@@ -37,6 +37,5 @@ skip_before_action :verify_authenticity_token
       params.require(:job_vacancy).permit(:title, :description, :opened_at, :school_id, :school_name, :qualifications) 
     end	
     
- 
 
-  end
+end

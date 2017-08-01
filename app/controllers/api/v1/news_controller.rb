@@ -1,8 +1,5 @@
 class Api::V1::NewsController < ApplicationController
 
-
-
-  before_action :subscription_expired_news ,only: :add_new_news
   skip_before_action :verify_authenticity_token
 	
 		
@@ -29,8 +26,9 @@ end
 	def getAllNewsbyDate 
 	
 	#"date":"29/07/2017"
-	
-	@news =   School.select("Schools.*, News.*").joins(",News where News.school_id = schools.id and to_char(News.date, 'DD/MM/YYYY')  >=  '"+params[:date]+"'") 	
+
+	#@news =   School.select("Schools.*, News.*").joins(",News where News.school_id = schools.id and to_char(News.date, 'DD/MM/YYYY')  >=  '"+params[:date]+"'") 
+	@news =   School.select("Schools.*, News.*").joins(",News where News.school_id = schools.id and News.date  >=  '"+params[:date]+"'::date") 	
     render json: @news.to_json
 	
 	end
@@ -39,7 +37,7 @@ end
 	def getNewsSchool 
 	
 	#"school_id":"1"
-	
+
 	@news =   School.select("Schools.*, News.*").joins(",News where News.school_id = schools.id and schools.id =  "+params[:school_id].to_s+" ") 	
     render json: @news.to_json
 	
@@ -53,6 +51,4 @@ end
     	params[:newss_param][:date] = DateTime.now.to_date
       params.require(:newss_param).permit(:text,:date,:school_id)
     end
-
- 
 end
