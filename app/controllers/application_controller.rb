@@ -11,53 +11,32 @@ end
 
 helper_method :logged_in?
 
-def expired_news?
+def expired?
 
 
-  @school = School.find(params[:newss_param][:school_id])
+  @school = School.find(params[:api_param][:school_id])
 
-
-  if DateTime.now > @school.expire
+if @school.expire != nil
+  if DateTime.now > @school.expire 
         return true 
     else 
         return false 
   end 
-
+else 
+    return true 
+  end   
  
 end  
 
-helper_method :expired_news?
+helper_method :expired?
 
-def subscription_expired_news
+def subscription_expired
   
-    @y = "your subscription has ended , Please Renew your subscription"
-    render json: @y if expired_news?
+    @y = "your subscription has ended , Please Renew your subscription or wait for your school to be approved"
+    render json: @y if expired?
    
 end  
 
-def expired_jobs?
-
-
-  @school = School.find(params[:job_vacancy][:school_id])
-
-
-  if DateTime.now > @school.expire
-        return true 
-    else 
-        return false 
-  end 
-
- 
-end  
-
-helper_method :expired_jobs?
-
-def subscription_expired_jobs
-  
-    @y = "your subscription has ended , Please Renew your subscription"
-    render json: @y if expired_jobs?
-   
-end  
 
 
 def authorize

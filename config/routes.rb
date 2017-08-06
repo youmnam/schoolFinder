@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+
+
+
 get 'sessions/new'
 get 'schools/text', to: 'schools#text', as: 'text'
 get 'signup', to: 'users#new',        as: 'signup'
@@ -8,9 +12,17 @@ get 'logout', to: 'sessions#destroy', as: 'logout'
 resources :sessions
 resources :users
 
-resources :schools 
-match 'schools/approve/:id',   :to => 'schools#approve'  , :as => 'approve'  , :via => :put
-match 'schools/subscribe/:id', :to => 'schools#subscribe', :as => 'subscribe', :via => :put
+match 'schools/apply/:id'       ,  :to => 'schools#apply'   , :as => 'applyview'          ,:via => :get
+match 'schools/applyjob/:id'       ,  :to => 'schools#applyjob'   , :as => 'apply'          ,:via => :post
+match 'schools/:school_id/images', :to => 'images#create'   , :as => 'create_images'  ,:via => :post
+match 'schools/approve/:id',       :to => 'schools#approve'  , :as => 'approve'       ,:via => :put
+match 'schools/subscribe/:id',     :to => 'schools#subscribe', :as => 'subscribe'     ,:via => :put
+
+
+resources :schools do 
+  resources :images ,:only => [:create, :destroy]
+end
+
   
 namespace :api, :defaults => {:format => :json} do
     namespace :v1 do  

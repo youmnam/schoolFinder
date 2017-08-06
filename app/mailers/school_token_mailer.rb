@@ -9,6 +9,7 @@ def send_token(school)
     mail(to: "mac.mem65@gmail.com" , subject: "#{@school.school_name} has been approved!")
 end
 
+def 
 
 
 

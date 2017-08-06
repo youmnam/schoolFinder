@@ -1,9 +1,9 @@
 class Api::V1::JobVacancyController < ApplicationController
-
+before_action :subscription_expired ,on: :add_job_vacancy
 skip_before_action :verify_authenticity_token
 
     def search_for_vacancy
-		@job_vacancy = JobVacancy.search(params[:job_vacancy][:title])
+		@job_vacancy = JobVacancy.search(params[:api_param][:title])
 		render json: @job_vacancy
 	end
     
@@ -34,7 +34,7 @@ skip_before_action :verify_authenticity_token
 	private
 
 	def job_vacancies_param
-      params.require(:job_vacancy).permit(:title, :description, :opened_at, :school_id, :school_name, :qualifications) 
+      params.require(:api_param).permit(:title, :description, :opened_at, :school_id, :school_name, :qualifications) 
     end	
     
 

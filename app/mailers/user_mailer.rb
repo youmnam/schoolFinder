@@ -1,6 +1,7 @@
 class UserMailer < ApplicationMailer
 
-  
+  default from: "magdy.youmna@gmail.com"
+
   
   
   
@@ -68,14 +69,13 @@ class UserMailer < ApplicationMailer
 	 
 	 
 	# 
-	 
-    mail( :to => ""+school_email+"", :subject => "From Uniparticle" ,
+	 #""+school_email+""
+    mail( :to => "Mac.mem65@gmail.com", :subject => "From Uniparticle" ,
 	:body => "
 	Employee Name : "+email_body[:employee_name]+"
 	Email : "+email_body[:email]+" 
 	Telephone No : "+email_body[:telephone_no]+"
 	Position : "+email_body[:position]+"
-	
 	" 
 	
 	

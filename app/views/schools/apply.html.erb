@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Applying for a Job</title>
+    <%=stylesheet_link_tag 'application' %>
+     <%=stylesheet_link_tag 'school' %>
+</head>
+
+<body>
+
+ 
+<div class="container">
+<%= form_tag(apply_path, :method => :post,:enctype =>"multipart/form-data",:id => 'form' ,:name => "form" ,:onsubmit => "return validateForm()") do%>
+
+
+    <div class="row">
+      <h4> Application Info</h4>
+      
+      <div class="input-group input-group-icon">   
+            <%= label_tag(:employee_name, "Name") %>
+            <%= text_field_tag(:employee_name) %>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+
+    <div class="input-group input-group-icon">   
+             <%= label_tag(:position, "Position") %>
+            <%= text_field_tag(:position) %>
+        <div class="input-icon"><i class="fa fa-user"></i></div>
+      </div>
+
+      <div class="input-group input-group-icon">
+         <%= label_tag(:email, "Email") %>
+            <%= text_field_tag(:email) %>
+        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+      </div>
+      
+      <div class="input-group input-group-icon">
+          <%= label_tag(:telephone_no, "Phone Number") %>
+            <%= text_field_tag(:telephone_no) %>
+        <div class="input-icon"><i class="fa fa-phone"></i></div>
+      </div>
+    
+<div class="input-group">
+   <label for="cv_path">CV</label> <%= file_field_tag "cv_path" , "accept"=> ".pdf" %>
+</div>
+       
+    
+    <div class="actions">
+    <%= submit_tag "apply" %>
+  </div>
+
+  <% end %>
+    
+    
+    
+    
+    </div>
+</div>
+</body>
+<html>
+<script>
+function validateForm() {
+    var name = document.forms["form"]["employee_name"].value;
+    var email = document.forms["form"]["email"].value;
+    var position = document.forms["form"]["position"].value;
+    var phone = document.forms["form"]["telephone_no"].value;
+    var cv = document.forms["form"]["cv_path"].value;
+    var atpos = email.indexOf("@");
+    var dotpos = email.lastIndexOf(".");
+    if ((name == "") || ((email == "") || atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length ) ||( position== "") ||( phone== "" || Number.isNaN(phone)) ||(cv == "")) 
+    {
+        alert("Everything must be filled");
+        return false;
+    }
+}
+</script>

@@ -4,13 +4,17 @@ class School < ApplicationRecord
 
 	after_validation :token_create  , on: :create
 	validates_uniqueness_of :token ,on: :create
-	
+
 	validates :school_name ,:school_description ,:school_website ,:school_app,:school_email,:school_telephone,:school_address,:admission_email,:school_feesRange,:school_eduSystem,:school_curriculum,:school_availableGrades,:school_age,:school_age,:school_logo,:school_images,presence: true 
 	validates :school_age,:school_telephone,:school_availableGrades,:school_feesRange,numericality: { only_integer: true }
 	validates :school_name,:school_website,:school_email, uniqueness: true
 	validates :school_email,:admission_email ,email_format: { message: "doesn't look like an email address" }
 	validates :school_website , :url => true
 	validate :city_and_area ,on: :create
+
+	#validates :employee_name,:email,:telephone_no,:position,:cv_path,:id ,presence: true
+	
+	
 	private 
 
     def city_and_area
